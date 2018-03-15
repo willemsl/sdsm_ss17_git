@@ -83,7 +83,7 @@ Date:   Thu Mar 15 13:26:02 2018 +0100
 fix: geometry
 \end{minted}
 
-Zu erkennen ist, dass sich die Referenz \textit{HEAD} auf der gleichen Position wie der Branch \textit{master} befindet. Der Branch \textit{master} ist ein Branch auf dem lokalen System des Entwicklers. Die Referenz \textit{origin/master} zeigt den Zustand an, auf dem das Online-Repository \textit{origin} und dessen Branch \textit{master} steht.
+Zu erkennen ist, dass sich die Referenz \textit{HEAD} auf der gleichen Position wie der Branch \textit{master} befindet. Der Branch \textit{master} ist ein Branch auf dem lokalen System des Entwicklers. Die Referenz \textit{origin/master} referenziert auf den Commit, auf dem das Online-Repository \textit{origin} und dessen Branch \textit{master} steht. Alle Referenzen referenzieren auf den Commit mit der ID \textit{ea39aa0}.
 
 Um zu überprüfen welche Adresse sich hinter dem Label \textit{origin} befindet, bietet Git den Befehl \textit{git remote -v} an.
 
@@ -93,11 +93,15 @@ origin  git@git.cryptic.systems:fh-trier/sdsm_ss17_git.git (fetch)
 origin  git@git.cryptic.systems:fh-trier/sdsm_ss17_git.git (push)
 \end{minted}
  
-\begin{INFO}
-  Möchte man eine Remote-Verbindung entfernen kann dies unter Angabe des Git Befehls \textit{git remote remove <label>} vorgenommen werden. 
+Möchte man eine Remote-Verbindung entfernen kann dies unter Angabe des Git Befehls \textit{git remote remove  $ < $label $ > $} vorgenommen werden. 
   
-  Hinzufügen von neuen Remote-Verbindungen sind möglich mittels \textit{git remote add $ < $label$ > $ $ < $adresse$ > $}.
+Hinzufügen von neuen Remote-Verbindungen sind möglich mittels \textit{git remote add $ < $label$ > $ $ < $adresse$ > $}.
+
+\begin{INFO}
+  Möchte man den Quellcode eines existierenden Projektes verbessern und an die Verantwortlichen einreichen, muss der Workflow abgeändert werden.
+  
+  
 \end{INFO}
 
- 
-Momentan befindet sich die Referenz HEAD auf dem gleichen Commit wie der lokale Branch \textit{master} und dem Branch \textit{master} des Online-Repositories \textit{origin}.
+
+\section{Ändern, Einchecken und Commiten}
