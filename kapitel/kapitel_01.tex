@@ -1,6 +1,6 @@
 \label{sec:einfuehrung}
 \section{Einführung}
-Dieses Kapitel bietet eine Einführung in die Grundbegriffe von Git und deren Konfigurationseinstellungen. Fortlaufend wird auf Basis dieses \LaTeX{} Dokuments gezeigt, wie ein Projekt mit Git unter Versionskontrolle gestellt werden kann. Dazu werden die wichtigsten Git-Kommandos näher erläutert.
+Dieses Kapitel bietet eine Einführung in die Grundbegriffe von Git und deren generelle Grundkonfiguration.
 
 \label{sec:einfuehrung.grundbegriffe}
 \subsection{Grundbegriffe}
@@ -28,80 +28,61 @@ Jede Software kann in ihrem Verlauf mehrere Entwicklungsverzweigungen haben um b
 
 
 \label{sec:einfuehrung.git}
-\subsection{Einrichtung von Git}
-Wie bereits in in Kapitel \ref{sec:einfuehrung.grundbegriffe} erklärt, speichert Git bei jedem Commit den Benutzernamen und E-Mail ab. Bevor nun dieses Dokument, das als \LaTeX{} Projekt angelegt wurde, durch Git verwaltet wird, ist es Sinnvoll den Benutzernamen und die E-Mail Adresse anzupassen \footcite{git-1.6-your-identity}.
+\subsection{Grundeinrichtung}
+Wie bereits in in Kapitel \ref{sec:einfuehrung.grundbegriffe} erklärt, speichert Git bei jedem Commit den Benutzernamen und E-Mail ab um nachzuvollziehen von wem die Änderung des Quellcodes stammt. Bevor nun dieses Dokument, das als \LaTeX{} Projekt angelegt wurde, durch Git verwaltet wird, ist es Sinnvoll den Benutzernamen und die E-Mail Adresse anzupassen \footcite{git-1.6-your-identity}.
 
 \begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
 $ git config --global user.name "Hugo McKinnock"
 $ git config --global user.email "hugo.mckinnock@example.com"
 \end{minted}
 
-Ist ein gpg Schlüssel vorhanden, kann dieser direkt hinterlegt werden um Commits direkt im Hintergrund zu signieren. Dazu muss zuerst der gpg Schlüssel ausfindig gemacht werden und anschließend Git mitgeteilt werden.
+
+\subsection{Signieren von Commits}
+Da jede Person in der Lage ist den Quellcode boshaft zu ändern unter beliebigen Namen, bietet Git die Möglichkeit an jeden Commit mit einem GnuPG Schlüssel zu signieren.
+
+\begin{INFO}
+  Manche Projekte setzen signierte Commits voraus, wie beispielsweise das Projekt um den Linux Kernel. Nicht signierte Commits werden durch die Hauptverantwortlichen nicht übernommen. Dazu später mehr.
+\end{INFO}
+
+Ist GnuPG auf dem eigenen System nicht vorhanden, kann dies nachträglich installiert werden. Debian basierende Derivate  bieten GnuPG durch die offiziellen Paketquellen an. Dazu reicht die Installation über den Terminalbefehl \textit{sudo apt-get update; sudo apt-get install gpg2 --yes}.
+
+Wird ein Windows-System genutzt, müssen die GnuPG Binaries manuell heruntergeladen und installiert werden. Die Binaries können unter \href{https://www.gpg4win.de}{gpg4win.de} bezogen werden.
+
+Der GnuPG Schlüssel wird anschließend über den Aufruf von gpg im Terminal (Linux Derivate) oder der Git-Bash (Windows) erzeugt. Im Beispiel wird ein RSA 2048 Bit Schlüssel erzeugt.
+
+\begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
+$ gpg --gen-key
+gpg (GnuPG) 2.1.11; Copyright (C) 2016 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Hinweis: "gpg --full-gen-key" ruft den erweiterten Dialog auf.
+
+GnuPG erstellt eine User-ID, um Ihren Schlüssel identifizierbar zu machen.
+
+Ihr Name: Hugo McKinnock
+Email-Adresse: hugo.mckinnock@example.com
+Sie haben diese User-ID gewählt:
+"Hugo McKinnock <hugo.mckinnock@example.com>"
+
+Ändern: (N)ame, (E)-Mail oder (F)ertig/(A)bbrechen? F
+gpg: Schlüssel F3FFC9EC ist als ultimativ vertrauenswürdig gekennzeichnet
+\end{minted}
+
+Wurde der GnuPG Schlüssel erzeugt, kann dieser nun hinterlegt werden um Commits im Hintergrund automatisch zu signieren. Dazu muss zuerst die Schlüssel-ID ausfindig gemacht werden und anschließend Git mitgeteilt werden. 
 
 \begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
 $ gpg --list-secret-keys --keyid-format 0xSHORT
 /home/hugo/.config/gnupg/pubring.gpg
 --------------------------------------
-sec   rsa4096/0x85ED78DE 2018-03-15 [SC] [verfällt: 2018-09-15]
-uid        [  ultimativ] Hugo McKinnock <hugo.mckinnock@example.com>
-ssb   rsa4096/0x848DEAC1 2018-03-15 [E] [verfällt: 2018-09-15]
+sec   rsa2048/F3FFC9EC 2018-03-15 [SC]
+uid      [  ultimativ] Hugo McKinnock <hugo.mckinnock@example.com>
+ssb   rsa2048/4A1B6E12 2018-03-15 [E]
 
 $ git config --global user.signingkey "0x85ED78DE"
 $ git config --global commit.gpgSign true
 \end{minted}
 
-\section{Projekt auschecken}
-Wir erstellen im Heimatverzeichnis, wie von den meisten IDE's bevorzugt, das Verzeichnis \textit{workspace} und klonen von einem Online-Repository dieses Projekt. Anschließend befindet sich im Verzeichnis \textit{workspace} der Unterordner \textit{sdsm\_ss17\_git} in den mittels \textit{cd} anschließend navigiert wird.
-
-\begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
-$ mkdir ~/workspace
-$ git clone https://git.cryptic.systems/fh-trier/sdsm_ss17_git.git
-$ cd sdsm_ss17_git
-\end{minted}
-
 \begin{INFO}
-  Zum klonen eines Online-Repositories wird auf vielen Online-Plattformen wie \href{https://github.com}{GitHub} oder \href{https://gitlab.com}{GitLab} eine Adresse per \textit{HTTPS-} oder \textit{SSH-}Protokoll angeboten. 
-  
-  Für eine Verbindung per SSH-Protokoll muss ein Account auf diesen Online-Plattformen registriert und der öffentliche Schlüssel des asymmetrischen Verschlüsselungsverfahren hinterlegt sein.  
+  Sollte das Betriebssystem gpg nicht finden, wird die Binary nicht durch die Umgebungsvariable \textit{PATH} aufgelöst. Entweder wird der Pfad zur gpg Binary der Umgebungsvariable \textit{PATH} hinzugefügt oder der absolute Pfad mit Angabe der gpg Binary Git durch folgenden Befehl mitgeteilt - \textit{git config --global gpg.program $ < $Pfad$ > $}
 \end{INFO}
-
-Das heruntergeladene Repository spiegelt nun den Zustand ab, auf dem sich die Referenz \textit{HEAD} befindet. Um dies zu überprüfen, bietet Git den Befehl \textit{git log} an. Wir lassen uns die neusten zwei Commits anzeigen.
-
-\begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
-$ git log -2
-commit 4660915d6c031598c77b49c6275e426f7c3a85c3 (HEAD -> master, 
-origin/master, origin/HEAD)
-Author: Markus Pesch <markus.pesch@cryptic.systems>
-Date:   Thu Mar 15 16:49:12 2018 +0100
-
-add: chapter 1
-
-commit 1ca84c7271f3f3c306b779256bd1902497f44fb9
-Author: Markus Pesch <markus.pesch@cryptic.systems>
-Date:   Thu Mar 15 13:26:02 2018 +0100
-
-fix: geometry
-\end{minted}
-
-Zu erkennen ist, dass sich die Referenz \textit{HEAD} auf der gleichen Position wie der Branch \textit{master} befindet. Der Branch \textit{master} ist ein Branch auf dem lokalen System des Entwicklers. Die Referenz \textit{origin/master} referenziert auf den Commit, auf dem das Online-Repository \textit{origin} und dessen Branch \textit{master} steht. Alle Referenzen referenzieren auf den Commit mit der ID \textit{ea39aa0}.
-
-Um zu überprüfen welche Adresse sich hinter dem Label \textit{origin} befindet, bietet Git den Befehl \textit{git remote -v} an.
-
-\begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
-$ git remote -v
-origin  git@git.cryptic.systems:fh-trier/sdsm_ss17_git.git (fetch)
-origin  git@git.cryptic.systems:fh-trier/sdsm_ss17_git.git (push)
-\end{minted}
- 
-Möchte man eine Remote-Verbindung entfernen kann dies unter Angabe des Git Befehls \textit{git remote remove  $ < $label $ > $} vorgenommen werden. 
-  
-Hinzufügen von neuen Remote-Verbindungen sind möglich mittels \textit{git remote add $ < $label$ > $ $ < $adresse$ > $}.
-
-\begin{INFO}
-  Möchte man den Quellcode eines existierenden Projektes verbessern und an die Verantwortlichen einreichen, muss der Workflow abgeändert werden.
-  
-  
-\end{INFO}
-
-
-\section{Ändern, Einchecken und Commiten}
