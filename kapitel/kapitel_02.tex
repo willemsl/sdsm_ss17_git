@@ -1,5 +1,18 @@
-\section{Workflow einrichten}
-Wir erstellen im Heimatverzeichnis, wie von den meisten IDE's bevorzugt, das Verzeichnis \textit{workspace} und klonen von einem Online-Repository dieses Projekt. Anschließend befindet sich im Verzeichnis \textit{workspace} der Unterordner \textit{sdsm\_ss17\_git} in den mittels \textit{cd} anschließend navigiert wird.
+\section{Workflow}
+
+\subsection{Erläuterung}
+Wie bereits in Kapitel \ref*{sec:einfuehrung.grundbegriffe} erwähnt, ist ein dezentrales Versionskontrollsystem. Dadurch ist jeder Nutzer in der Lage ohne Abhängigkeit zu einem Server seinen Quellcode zu versionieren.
+
+Jeder Nutzer kann sein eigenes Projekt durch \textit{git init} zu einem Git Repository initialisieren oder ein bestehendes Repository aus einem Online-Verzeichnis klonen. Beim klonen des Repositories wird der komplette Hierarchiebaum bzw. die Chronik mit jedem Commit und Branch geklont. Beim initialisieren eines neuen Repositories ist der Hierarchiebaum leer und unbeschrieben. Die Initialisierung eines neues Repositories wird bevorzugt beim neuen Projekten.
+
+Um jedoch einen Workflow einzurichten, der es ermöglicht an bestehenden Projekten teil zu nehmen, muss zuerst das Projekt auf das lokale System geklont werden. Nachdem das Projekt als Git Repository auf dem lokalen System vorhanden ist, können Änderungen am Quellcode vorgenommen werden und in den Hierarchiebaum bzw. dem Repository hinzugefügt werden. Ist der Entwickler der Meinung, das alle Änderungen abgeschlossen sind, obliegt ihm selbst ob er seine Änderungen an den Hauptverantwortlichen einreicht. 
+
+Der Entwickler kann seine Änderungen als Patch per E-Mail einreichen, sofern die Hauptverantwortlichen des geklonten Projekts dieses Verfahren unterstützen. Die bevorzugte Methode ist bei den meisten Online-Plattformen jedoch der Merge Request, manchmal auch Pull-Request genannt. 
+
+Bei einem Merge-Request fragt man an, ob eine bestimmte Sammlung von Commits, die eine Änderung des Quellcodes wieder spiegeln, durch die Hauptverantwortlichen übernommen werden. Dadurch wird der Hierarchiebaum des Online-Repositories um die eigenen Commits erweitert. Anderen Entwickler, die auch dieses Repository geklont haben, können zukünftig die Änderung aus dem Online-Repository auf ihr eigenes lokales Repository übernehmen.  
+
+\subsection{Einrichtung}
+Im Heimatverzeichnis wird wie von den meisten IDE's bevorzugt, das Verzeichnis \textit{workspace} erstellt. Dort wird von einem Online-Repository dieses \LaTeX Projekt, das dieses Dokument enthält geklont. Nach dem klonen befindet sich im Verzeichnis \textit{workspace} der Unterordner \textit{sdsm\_ss17\_git}, in den mittels \textit{cd} nachträglich navigiert wird.
 
 \begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
 $ mkdir ~/workspace
