@@ -12,11 +12,11 @@ Der Entwickler kann seine Änderungen als Patch per E-Mail einreichen, sofern di
 Bei einem Merge-Request fragt man an, ob eine bestimmte Sammlung von Commits, die eine Änderung des Quellcodes wieder spiegeln, durch die Hauptverantwortlichen übernommen werden. Dadurch wird der Hierarchiebaum des Online-Repositories um die eigenen Commits erweitert. Anderen Entwickler, die auch dieses Repository geklont haben, können zukünftig die Änderung aus dem Online-Repository auf ihr eigenes lokales Repository übernehmen.  
 
 \subsection{Einrichtung}
-Im Heimatverzeichnis wird wie von vielen IDE's bevorzugt, das Verzeichnis \textit{workspace} erstellt. Dort wird von einem Online-Repository dieses \LaTeX{} Projekt, das dieses Dokument enthält geklont. Nach dem klonen befindet sich im Verzeichnis \textit{workspace} der Unterordner \textit{sdsm\_ss17\_git}, in den mittels \textit{cd} nachträglich navigiert wird.
+Im Heimatverzeichnis wird wie von vielen IDE's bevorzugt, das Verzeichnis \textit{workspace} erstellt. Dort wird von dem Online-Repository \href{https://github.com}{GitHub} dieses \LaTeX{} Projekt, das dieses Dokument enthält, geklont. Nach dem klonen befindet sich im Verzeichnis \textit{workspace} der Unterordner \textit{sdsm\_ss17\_git}, in den mittels \textit{cd} nachträglich navigiert wird.
 
 \begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
 $ mkdir ~/workspace
-$ git clone https://git.cryptic.systems/fh-trier/sdsm_ss17_git.git
+$ git clone git@github.com:fh-trier/sdsm_ss17_git.git
 $ cd sdsm_ss17_git
 \end{minted}
 
@@ -26,25 +26,28 @@ $ cd sdsm_ss17_git
   Für eine Verbindung per SSH-Protokoll muss ein Account auf diesen Online-Plattformen registriert und der öffentliche Schlüssel des asymmetrischen Verschlüsselungsverfahren hinterlegt sein.  
 \end{INFO}
 
-Das heruntergeladene Repository spiegelt nun den Zustand ab, auf dem sich die Referenz \textit{HEAD} befindet. Um dies zu überprüfen, bietet Git den Befehl \textit{git log} an. Wir lassen uns die neusten zwei Commits anzeigen.
+Das heruntergeladene Repository spiegelt nun den Zustand wieder, auf dem sich die Referenz \textit{HEAD} befindet. Um dies zu überprüfen, bietet Git den Befehl \textit{git log} an. Wir lassen uns die neusten zwei Commits anzeigen.
 
 \begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
 $ git log -2
-commit 4660915d6c031598c77b49c6275e426f7c3a85c3 (HEAD -> master, 
-origin/master, origin/HEAD)
+commit e42f6e04ac8c3d2cf7d1e2c3b5dd5f7257612dc5 (HEAD -> master, origin/master)
 Author: Markus Pesch <markus.pesch@cryptic.systems>
-Date:   Thu Mar 15 16:49:12 2018 +0100
+Date:   Thu Mar 15 21:59:24 2018 +0100
 
-add: chapter 1
+fix: chapter 2.2
 
-commit 1ca84c7271f3f3c306b779256bd1902497f44fb9
+commit 800ac8b5930ebe0650b83471aee957fe2195de05
 Author: Markus Pesch <markus.pesch@cryptic.systems>
-Date:   Thu Mar 15 13:26:02 2018 +0100
+Date:   Thu Mar 15 21:53:14 2018 +0100
 
-fix: geometry
+fix: chapter 2.
 \end{minted}
 
-Zu erkennen ist, dass sich die Referenz \textit{HEAD} auf der gleichen Position wie der Branch \textit{master} befindet. Der Branch \textit{master} ist ein Branch auf dem lokalen System des Entwicklers. Die Referenz \textit{origin/master} referenziert auf den Commit, auf dem das Online-Repository \textit{origin} und dessen Branch \textit{master} steht. Alle Referenzen referenzieren auf den Commit mit der ID \textit{ea39aa0}.
+Zu erkennen ist, dass sich die Referenz \textit{HEAD} auf der gleichen Position wie der Branch \textit{master} befindet. Der Branch \textit{master} ist ein Branch auf dem lokalen System des Entwicklers. Die Referenz \textit{origin/master} referenziert auf den Commit, auf dem das Online-Repository \textit{origin} und dessen Branch \textit{master} steht. Alle Referenzen referenzieren auf den Commit mit der ID \textit{e42f6e0}.
+
+\begin{WARN}
+  Zeigt \textit{HEAD} nicht auf einen Branch, spricht man davon, dass \textit{HEAD} losgelöst von einem Branch ist. Dies ist nur Sinnvoll um ältere Zustände zu betrachten, da auf einem losgelösten Zustand keine Änderungen angewandt werden können.
+\end{WARN}
 
 Um zu überprüfen welche Adresse sich hinter dem Label \textit{origin} befindet, bietet Git den Befehl \textit{git remote -v} an.
 
