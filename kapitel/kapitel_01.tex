@@ -51,7 +51,7 @@ $ git config --global commit.gpgSign true
 \end{minted}
 
 \section{Projekt auschecken}
-Wir erstellen im Heimatverzeichnis, wie von den meisten IDE's bevorzugt, das Verzeichnis \textit{workspace} und klonen von einem Online-Repository dieses Projekt. Anschließend befindet sich im Verzeichnis \textit{workspace} der Unterordner \textit{sdsm\_ss17\_git} in den wir navigieren. 
+Wir erstellen im Heimatverzeichnis, wie von den meisten IDE's bevorzugt, das Verzeichnis \textit{workspace} und klonen von einem Online-Repository dieses Projekt. Anschließend befindet sich im Verzeichnis \textit{workspace} der Unterordner \textit{sdsm\_ss17\_git} in den mittels \textit{cd} anschließend navigiert wird.
 
 \begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
 $ mkdir ~/workspace
@@ -62,7 +62,7 @@ $ cd sdsm_ss17_git
 \begin{INFO}
   Zum klonen eines Online-Repositories wird auf vielen Online-Plattformen wie \href{https://github.com}{GitHub} oder \href{https://gitlab.com}{GitLab} eine Adresse per \textit{HTTPS-} oder \textit{SSH-}Protokoll angeboten. 
   
-  Für eine Verbindung per SSH-Protokoll muss ein Account auf diesen Online-Plattformen registriert sein und der öffentliche Schlüssel des asymmetrischen Verschlüsselungsverfahren hinterlegt sein.  
+  Für eine Verbindung per SSH-Protokoll muss ein Account auf diesen Online-Plattformen registriert und der öffentliche Schlüssel des asymmetrischen Verschlüsselungsverfahren hinterlegt sein.  
 \end{INFO}
 
 Das heruntergeladene Repository spiegelt nun den Zustand ab, auf dem sich die Referenz \textit{HEAD} befindet. Um dies zu überprüfen, bietet Git den Befehl \textit{git log} an. Wir lassen uns die neusten zwei Commits anzeigen.
@@ -83,4 +83,21 @@ Date:   Thu Mar 15 13:26:02 2018 +0100
 fix: geometry
 \end{minted}
 
-Zu erkennen ist, dass sich die Referenz \textit{HEAD} auf der gleichen Position wie der Branch \textit{master} befindet. Der Branch \textit{master} ist ein Branch auf dem lokalen System des Entwicklers. Die Referenz \textit{origin/master} zeigt den Zustand an, auf dem das Online-Repository, von dem geklont wurde, steht.
+Zu erkennen ist, dass sich die Referenz \textit{HEAD} auf der gleichen Position wie der Branch \textit{master} befindet. Der Branch \textit{master} ist ein Branch auf dem lokalen System des Entwicklers. Die Referenz \textit{origin/master} zeigt den Zustand an, auf dem das Online-Repository \textit{origin} und dessen Branch \textit{master} steht.
+
+Um zu überprüfen welche Adresse sich hinter dem Label \textit{origin} befindet, bietet Git den Befehl \textit{git remote -v} an.
+
+\begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
+$ git remote -v
+origin  git@git.cryptic.systems:fh-trier/sdsm_ss17_git.git (fetch)
+origin  git@git.cryptic.systems:fh-trier/sdsm_ss17_git.git (push)
+\end{minted}
+ 
+\begin{INFO}
+  Möchte man eine Remote-Verbindung entfernen kann dies unter Angabe des Git Befehls \textit{git remote remove <label>} vorgenommen werden. 
+  
+  Hinzufügen von neuen Remote-Verbindungen sind möglich mittels \textit{git remote add $ < $label$ > $ $ < $adresse$ > $}.
+\end{INFO}
+
+ 
+Momentan befindet sich die Referenz HEAD auf dem gleichen Commit wie der lokale Branch \textit{master} und dem Branch \textit{master} des Online-Repositories \textit{origin}.
