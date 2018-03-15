@@ -1,29 +1,27 @@
-\label{sec:ueberschrift1}
-\section{Überschrift 1}
+\label{sec:einfuehrung}
+\section{Einführung}
+Dieses Kapitel bietet eine Einführung in die Grundbegriffe von Git und deren Konfigurationseinstellungen. Fortlaufend soll ein Beispielprojekt zeigen, wie eine Datei mit Git unter Versionskontrolle gestellt werden kann. Dazu werden die wichtigsten Git-Kommandos näher erläutert.
 
-\label{subsec:ueberschrift12}
-\subsection{Überschrift 2}
+\label{sec:einfuehrung.grundbegriffe}
+\subsection{Grundbegriffe}
+Um dem Umgang mit Git zu erläutern ist es notwendig, einige Fachbegriffe zu verstehen. 
 
-\label{subsubsec:ueberschrift3}
-\subsubsection{Überschrift 3}
+\myparagraph{Versionskontrollsystem} 
+Ein Versionskontrollsystem dient zur Verwaltung und Versionierung von Software. Bekannte Projekte die unter dem Versionskontrollsystem Git stehen sind beispielsweise der Linux-Kernel und Git selbst. Beide Projekte stehen unter der Lizenz GPL. Der Quellcode kann mittels git bezogen werden. Dazu später mehr.
 
-\label{para:ueberschrift4}
-\paragraph{Überschrift 4}
+Bei Versionskontrollsystemen wird unterschieden zwischen zentralen und dezentralen Systemen. Git ist ein dezentrales System. Der Entwickler ist nicht abhängig von dem Server auf dem die Versionshierarchie gespeichert ist. Der Entwickler ist in der Lage mit Git die komplette Versionshierarchie auf sein eigenes System zu klonen und auf dieser Basis zu arbeiten.   
 
-\label{para:ueberschrift5}
-\subparagraph{Überschrift 5}
+\myparagraph{Repository}
+Git  verwaltet von jeder Datei unterschiedliche Zustände bzw. Versionen. Diese werden in dem Repository gespeichert. Mithilfe des Repositories ist es möglich, auf jeden Zustand einer Datei zurück zu springen.
 
+\myparagraph{Working Tree}
+Alle Modifikationen an Dateien bzw. dem Quellcode werden im Working Tree vorgenommen. Andere Bezeichnungen hierfür sind auch Working Directory oder Workspace. Wobei bei vielen IDEs im Heimatverzeichnis das Verzeichnis workspace erstellt wird um Projekte zu speichern und unter Versionskontrolle zu setzen. 
 
-\begin{enumerate}[itemsep=0pt] %Zeilenabstand
-	\item First
-	\item Second
-	\item Third
-\end{enumerate}
+\myparagraph{Commit}
+Ein Commit nimmt jede Veränderung, Modifikation oder Erstellung an Dateien im Working Tree auf. Zusätzlich speichert der Commit noch weitere Informationen wie den Benutzernamen und dessen E-Mail mit Datum und optional gpg-Signatur ab.  
 
-\begin{itemize}[itemsep=25pt] %Zeilenabstand
-	\item First with a bullet
-	\item Second with a bullet
-	\item Third with a bullet
-\end{itemize}
+\myparagraph{HEAD}
+HEAD bildet eine Referenz ab, in welchem Zustand der Entwickler sein Working Tree vor findet. 
 
-Lorem de Ipsum\footnote{This is a footnote}
+\myparagraph{Branch}
+Jede Software kann in ihrem Verlauf mehrere Entwicklungsverzweigungen haben um beispielsweise in jeder Verzweigung einzelne Teilaufgaben wie Patches oder neuen Features von Software zu entwickeln. Diese Verzweigungen werden Branches genannt. Jede Verzweigung kann später durch einen Merge oder Rebase wieder zurück geführt werden.
