@@ -95,18 +95,18 @@
 
 
 
-% Paket:            biblatex
+% Paket: biblatex
 \usepackage[
-  style=authoryear-icomp,  % Zitierstil
-  isbn=false,              % ISBN nicht anzeigen, gleiches geht mit nahezu allen anderen Feldern
-  pagetracker=true,        % ebd. bei wiederholten Angaben (false=ausgeschaltet, page=Seite, spread=Doppelseite, true=automatisch)
-  maxbibnames=50,          % maximale Namen, die im Literaturverzeichnis angezeigt werden (ich wollte alle)
-  maxcitenames=3,          % maximale Namen, die im Text angezeigt werden, ab 4 wird u.a. nach den ersten Autor angezeigt
-  autocite=inline,         % regelt Aussehen für \autocite (inline=\parancite)
-  block=space,             % kleiner horizontaler Platz zwischen den Feldern
-  backref=true,            % Seiten anzeigen, auf denen die Referenz vorkommt
-  backrefstyle=three+,     % fasst Seiten zusammen, z.B. S. 2f, 6ff, 7-10
-  date=short,              % Datumsformat
+  style=authoryear-icomp,  	% Zitierstil
+  isbn=false,				% Die ISBN Nummer ausblenden				
+  pagetracker=true,        	% ebd. bei wiederholten Angaben (false=ausgeschaltet, page=Seite, spread=Doppelseite, true=automatisch)
+  maxbibnames=50,          	% maximale Namen, die im Literaturverzeichnis angezeigt werden (ich wollte alle)
+  maxcitenames=3,          	% maximale Namen, die im Text angezeigt werden, ab 4 wird u.a. nach den ersten Autor angezeigt
+  autocite=inline,         	% regelt Aussehen für \autocite (inline=\parancite)
+  block=space,             	% kleiner horizontaler Platz zwischen den Feldern
+  backref=true,            	% Seiten anzeigen, auf denen die Referenz vorkommt
+  backrefstyle=three+,     	% fasst Seiten zusammen, z.B. S. 2f, 6ff, 7-10
+  date=short,              	% Datumsformat
   backend=biber
 ]{biblatex}
 \setlength{\bibitemsep}{1em}     % Abstand zwischen den Literaturangaben
@@ -122,8 +122,27 @@
 \makeglossaries
 \include{glossar//glossar}
 
+% Paket:			xcolor
+% Beschreibung:		Definition eigener Farben
+\usepackage[usenames,dvipsnames]{xcolor}
+\definecolor{orange}{HTML}{FF7F00}
+
 % Einstellungen überschreiben
 \newcommand{\myparagraph}[1]{\paragraph{#1}\mbox{}\\}
+
+% Frame-Blöcke
+\usepackage[framemethod=tikz]{mdframed}
+\mdtheorem[
+  linecolor=red,
+  frametitlefont=\sffamily\bfseries\color{white},
+  frametitlebackgroundcolor=red,
+]{WARN}{Warnung}[subsection]
+
+\mdtheorem[
+linecolor=orange,
+frametitlefont=\sffamily\bfseries\color{white},
+frametitlebackgroundcolor=orange,
+]{INFO}{Information}[subsection]
 
 % Start des Dokuments
 \begin{document}

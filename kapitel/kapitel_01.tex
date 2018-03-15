@@ -1,6 +1,6 @@
 \label{sec:einfuehrung}
 \section{Einführung}
-Dieses Kapitel bietet eine Einführung in die Grundbegriffe von Git und deren Konfigurationseinstellungen. Fortlaufend soll ein Beispielprojekt zeigen, wie eine Datei mit Git unter Versionskontrolle gestellt werden kann. Dazu werden die wichtigsten Git-Kommandos näher erläutert.
+Dieses Kapitel bietet eine Einführung in die Grundbegriffe von Git und deren Konfigurationseinstellungen. Fortlaufend wird auf Basis dieses \LaTeX{} Dokuments gezeigt, wie ein Projekt mit Git unter Versionskontrolle gestellt werden kann. Dazu werden die wichtigsten Git-Kommandos näher erläutert.
 
 \label{sec:einfuehrung.grundbegriffe}
 \subsection{Grundbegriffe}
@@ -25,3 +25,27 @@ HEAD bildet eine Referenz ab, in welchem Zustand der Entwickler sein Working Tre
 
 \myparagraph{Branch}
 Jede Software kann in ihrem Verlauf mehrere Entwicklungsverzweigungen haben um beispielsweise in jeder Verzweigung einzelne Teilaufgaben wie Patches oder neuen Features von Software zu entwickeln. Diese Verzweigungen werden Branches genannt. Jede Verzweigung kann später durch einen Merge oder Rebase wieder zurück geführt werden.
+
+
+\label{sec:einfuehrung.git}
+\subsection{Einrichtung von Git}
+Wie bereits in in Kapitel \ref{sec:einfuehrung.grundbegriffe} erklärt, speichert Git bei jedem Commit den Benutzernamen und E-Mail ab. Bevor nun dieses Dokument, das als \LaTeX{} Projekt angelegt wurde, durch Git verwaltet wird, ist es Sinnvoll den Benutzernamen und die E-Mail Adresse anzupassen \footcite{git-1.6-your-identity}.
+
+\begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
+$ git config --global user.name "Hugo McKinnock"
+$ git config --global user.email "hugo.mckinnock@example.com"
+\end{minted}
+
+Ist ein gpg Schlüssel vorhanden, kann dieser direkt hinterlegt werden um Commits direkt im Hintergrund zu signieren. Dazu muss zuerst der gpg Schlüssel ausfindig gemacht werden und anschließend Git mitgeteilt werden.
+
+\begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
+$ gpg --list-secret-keys --keyid-format 0xSHORT
+/home/hugo/.config/gnupg/pubring.gpg
+--------------------------------------
+sec   rsa4096/0x85ED78DE 2018-03-15 [SC] [verfällt: 2018-09-15]
+uid        [  ultimativ] Hugo McKinnock <hugo.mckinnock@example.com>
+ssb   rsa4096/0x848DEAC1 2018-03-15 [E] [verfällt: 2018-09-15]
+
+$ git config --global user.signingkey "0x85ED78DE"
+$ git config --global commit.gpgSign true
+\end{minted}
