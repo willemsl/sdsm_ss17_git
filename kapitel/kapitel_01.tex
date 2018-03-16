@@ -31,7 +31,7 @@ Jede Software kann in ihrem Verlauf mehrere Entwicklungsverzweigungen haben um b
 \subsection{Grundeinrichtung}
 Wie bereits in in Kapitel \ref{sec:einfuehrung.grundbegriffe} erklärt, speichert Git bei jedem Commit den Benutzernamen und E-Mail ab um nachzuvollziehen von wem die Änderung des Quellcodes stammt. Bevor nun dieses Dokument, das als \LaTeX{} Projekt angelegt wurde, durch Git verwaltet wird, ist es Sinnvoll den Benutzernamen und die E-Mail Adresse anzupassen \footcite{git-1.6-your-identity}.
 
-\begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
 $ git config --global user.name "Hugo McKinnock"
 $ git config --global user.email "hugo.mckinnock@example.com"
 \end{minted}
@@ -50,7 +50,7 @@ Wird ein Windows-System genutzt, müssen die GnuPG Binaries manuell heruntergela
 
 Der GnuPG Schlüssel wird anschließend über den Aufruf von gpg im Terminal (Linux Derivate) oder der Git-Bash (Windows) erzeugt. Im Beispiel wird ein RSA 2048 Bit Schlüssel erzeugt.
 
-\begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
 $ gpg --gen-key
 gpg (GnuPG) 2.1.11; Copyright (C) 2016 Free Software Foundation, Inc.
 This is free software: you are free to change and redistribute it.
@@ -71,7 +71,7 @@ gpg: Schlüssel F3FFC9EC ist als ultimativ vertrauenswürdig gekennzeichnet
 
 Wurde der GnuPG Schlüssel erzeugt, kann dieser nun hinterlegt werden um Commits im Hintergrund automatisch zu signieren. Dazu muss zuerst die Schlüssel-ID ausfindig gemacht werden und anschließend Git mitgeteilt werden. 
 
-\begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
 $ gpg --list-secret-keys --keyid-format 0xSHORT
 /home/hugo/.config/gnupg/pubring.gpg
 --------------------------------------

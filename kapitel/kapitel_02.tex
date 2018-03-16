@@ -9,12 +9,18 @@ Um jedoch einen Workflow einzurichten, der es ermöglicht an bestehenden Projekt
 
 Der Entwickler kann seine Änderungen als Patch per E-Mail einreichen, sofern die Hauptverantwortlichen des geklonten Projekts dieses Verfahren unterstützen. Die bevorzugte Methode ist bei den meisten Online-Plattformen jedoch der Merge Request, manchmal auch Pull-Request genannt. 
 
-Bei einem Merge-Request fragt man an, ob eine bestimmte Sammlung von Commits, die eine Änderung des Quellcodes wieder spiegeln, durch die Hauptverantwortlichen übernommen werden. Dadurch wird der Hierarchiebaum des Online-Repositories um die eigenen Commits erweitert. Anderen Entwickler, die auch dieses Repository geklont haben, können zukünftig die Änderung aus dem Online-Repository auf ihr eigenes lokales Repository übernehmen.  
+Bei einem Merge-Request fragt man an, ob eine bestimmte Sammlung von Commits, die eine Änderung des Quellcodes wieder spiegeln, durch die Hauptverantwortlichen übernommen werden. Dadurch wird der Hierarchiebaum des Online-Repositories um die eigenen Commits erweitert. Anderen Entwickler, die auch dieses Repository geklont haben, können zukünftig die Änderung aus dem Online-Repository auf ihr eigenes lokales Repository übernehmen.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1\textwidth]{img//workflow.png}
+  \label{img:workflow}
+\end{figure}  
 
 \subsection{Einrichtung}
 Im Heimatverzeichnis wird wie von vielen IDE's bevorzugt, das Verzeichnis \textit{workspace} erstellt. Dort wird von dem Online-Repository \href{https://github.com}{GitHub} dieses \LaTeX{} Projekt, das dieses Dokument enthält, geklont. Nach dem klonen befindet sich im Verzeichnis \textit{workspace} der Unterordner \textit{sdsm\_ss17\_git}, in den mittels \textit{cd} nachträglich navigiert wird.
 
-\begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
 $ mkdir ~/workspace
 $ git clone git@github.com:fh-trier/sdsm_ss17_git.git
 $ cd sdsm_ss17_git
@@ -28,7 +34,7 @@ $ cd sdsm_ss17_git
 
 Das heruntergeladene Repository spiegelt nun den Zustand wieder, auf dem sich die Referenz \textit{HEAD} befindet. Um dies zu überprüfen, bietet Git den Befehl \textit{git log} an. Wir lassen uns die neusten zwei Commits anzeigen.
 
-\begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
 $ git log -2
 commit e42f6e04ac8c3d2cf7d1e2c3b5dd5f7257612dc5 (HEAD -> master, origin/master)
 Author: Markus Pesch <markus.pesch@cryptic.systems>
@@ -51,16 +57,36 @@ Zu erkennen ist, dass sich die Referenz \textit{HEAD} auf der gleichen Position 
 
 Um zu überprüfen welche Adresse sich hinter dem Label \textit{origin} befindet, bietet Git den Befehl \textit{git remote -v} an.
 
-\begin{minted}[linenos, framesep=2mm, fontsize=\small]{bash}
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
 $ git remote -v
-origin  git@git.cryptic.systems:fh-trier/sdsm_ss17_git.git (fetch)
-origin  git@git.cryptic.systems:fh-trier/sdsm_ss17_git.git (push)
+origin  git@github.com:fh-trier/sdsm_ss17_git.git (fetch)
+origin  git@github.com:fh-trier/sdsm_ss17_git.git (push)
 \end{minted}
- 
-Möchte man eine Remote-Verbindung entfernen kann dies unter Angabe des Git Befehls \textit{git remote remove  $ < $label $ > $} vorgenommen werden. 
-  
-Hinzufügen von neuen Remote-Verbindungen sind möglich mittels \textit{git remote add $ < $label$ > $ $ < $adresse$ > $}.
+
+Zu erkennen ist, dass bei dem Befehl \textit{git fetch origin} alle neuen Commits von der Adresse \textit{git@github.com:fh-trier/sdsm\_ss17\_git.git} heruntergeladen werden - gekennzeichnet durch \textit{fetch}. Bei einem \textit{git push origin} versucht Git alle neuen Commits auf die gleiche Adresse, gekennzeichnet durch \textit{push}, zu schreiben. 
 
 \begin{INFO}
-  Möchte man den Quellcode eines existierenden Projektes verbessern und an die Verantwortlichen einreichen, muss der Workflow abgeändert werden.
+  Lässt man das Label bei \textit{git fetch} und \textit{git push} weg, nimmt Git automatisch das Label \textit{origin} an. Das Label \textit{origin} ist das Standard-Label zur Bezeichnung von Remote-Adressen.
 \end{INFO}
+
+Möchte man nun seine Commits auf pushen, wird Git den push zurückweisen. Der Grund ist, dass man nicht der Eigentümer des Repositories unter der Adresse \textit{git@github.com:fh-trier/sdsm\_ss17\_git.git} ist. Um dies zu lösen, muss unter dem Label \textit{origin} die \textit{push}-Adresse geändert werden. Die einfachste Möglichkeit ist, sich auf der gleichen Online-Plattform, hier \href{https://github.com}{GitHub}, einen eigenen Benutzernamen zu registrieren und einen Ableger, auch Fork genannt, zu erzeugen. Man erhält anschließend eine neue Adresse, die den eigenen Benutzernamen enthält. 
+
+Nun wird Git mitgeteilt, die neue Adresse als \textit{push}-Adresse unter dem Label \textit{origin} zu nutzen. Nach dem setzen werden die Adressen überprüft.
+
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
+$ git remote set-url origin \ 
+      --add --push git@github.com:hugo-mckinnock/sdsm_ss17_git.git
+$ git remote -v
+origin	git@github.com:fh-trier/sdsm_ss17_git.git (fetch)
+origin	git@github.com:hugo-mckinnock/sdsm_ss17_git.git (push)
+\end{minted}
+
+\begin{INFO}
+  Möchte man sein Repository bei einem \textit{git push} Befehl auf mehrere Online-Repositories kopieren, dann kann der Befehl zum hinzufügen wiederholt werden unter Angabe einer weiteren Adresse.
+\end{INFO}
+
+Möchte man eine komplette Remote-Verbindung entfernen, kann dies unter Angabe des Git Befehls \textit{git remote remove  $ < $label $ > $} vorgenommen werden. 
+  
+Hinzufügen einer neuen Remote-Verbindungen ist möglich mit Angabe des neuen Labels mittels \textit{git remote add $ < $label$ > $ $ < $adresse$ > $}.
+
+Nun ist der komplette Workflow eingerichtet und es wird Zeit sich mit den essentiellen Funktionen von Git zu beschäftigen. Dazu mehr in Kapitel 3.
