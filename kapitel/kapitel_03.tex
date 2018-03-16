@@ -21,7 +21,11 @@ $ git add img/workflow.png  # Fügt die Datei workflow.png aus dem
 
 \myparagraph{git commit}
 \label{git-commands.advanced.commit}
-Der Befehl \textit{git commit} speichert unter Angabe einer Nachricht den Zustand aller Dateien aus dem Index ab. Zusätzlich werden bei jedem Commit Metadaten mit abgespeichert wie bspw. der Name des Authors und dessen E-Mail Adresse. Optional kann dem Commit auch eine digitale Signatur hinzugefügt werden.
+Der Befehl \textit{git commit} speichert unter Angabe einer Nachricht den Zustand aller Dateien aus dem Index ab. Die Angabe einer Nachricht ist Pflicht. Zusätzlich werden bei jedem Commit Metadaten mit abgespeichert wie bspw. der Name des Authors und dessen E-Mail Adresse. Optional kann dem Commit auch eine digitale Signatur hinzugefügt werden.
+
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
+$ git commit -m "Message"   # Erzeug ein Commit mit einer Nachricht
+\end{minted}
 
 \myparagraph{git fetch}
 \label{git-commands.advanced.fetch}
