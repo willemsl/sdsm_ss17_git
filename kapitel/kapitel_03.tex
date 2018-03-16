@@ -38,13 +38,19 @@ Der Vorteil gegenüber einem \textit{\nameref{git-commands.advanced.merge}} ist,
 
 \myparagraph{git reset}
 \label{git-commands.advanced.reset}
-Ermöglicht einen Commit zu widerrufen, da es nicht möglich ist mit Git einen Commit zu löschen. Dazu wird die Veränderung des Commits zuvor durch einen neuen Commit negiert.
+Ermöglicht den Zustand es Working Trees auf eine Referenz (Commit-ID, HEAD, Branch oder Tag) zurück zusetzen.
 
 \myparagraph{git revert}
 \label{git-commands.advanced.revert}
+Ermöglicht einen Commit zu widerrufen, da es nicht möglich ist mit Git einen Commit zu löschen. Dazu wird die Veränderung des Commits zuvor durch einen neuen Commit negiert.
 
 \myparagraph{git log}
 \label{git-commands.advanced.log}
+Gibt die Historie aus. Zusätzlich werden die Metadaten des Commits auf Stdout ausgegeben. 
+
+\begin{INFO}
+  Möchte man die Historie als Graphen ausgeben bietet sich folgender Git-Befehl an: \textit{git log --abbrev-commit --decorate --graph --all --oneline}
+\end{INFO}
 
 \myparagraph{git status}
 \label{git-commands.advanced.status}
