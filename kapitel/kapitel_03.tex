@@ -29,7 +29,12 @@ $ git commit -m "Message"   # Erzeug ein Commit mit einer Nachricht
 
 \myparagraph{git fetch}
 \label{git-commands.advanced.fetch}
-Mit \textit{git fetch $ < $label$ > $} werden alle neuen Commits von einem Online-Repository heruntergeladen, die sich noch nicht lokal auf dem System befinden.
+Mit \textit{git fetch $ < $label$ > $} werden alle neuen Commits von einem Online-Repository heruntergeladen, die sich noch nicht lokal auf dem System befinden. Wird statt einem Label direkt die Adresse angegeben, speichert Git alle Commits unter der Referenz \textit{FETCH\_HEAD}.
+
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
+$ git fetch origin
+$ git fetch git@github.com:fh-trier/sdsm_ss17_git.git
+\end{minted}
 
 \begin{INFO}
   Wenn der Befehl \textit{git fetch} ausgeführt wird, heißt dies noch nicht, dass das lokale Repository aktualisiert wird. Dies muss mittels \textit{\nameref{git-commands.advanced.merge}} oder \textit{\nameref{git-commands.advanced.rebase}} manuell ausgeführt werden.
