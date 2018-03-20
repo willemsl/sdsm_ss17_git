@@ -9,6 +9,95 @@ PWD="$(pwd)"
 ls -la ${PWD} | grep -e '^d' 2>/dev/null
 \end{minted}
 
-Nun ändern wir den Quellcode ab in Zeile drei und ersetzen \textit{grep -e '\^{}d'} durch \textit{ grep -e '\^{}-'}. Nach speichern sollte beim Ausführen der Datei nur Dateien angezeigt werden. Die Modifikation der Datei kann Git auflösen mittels \textit{\nameref{git-commands.advanced.diff}}
+Nun ändern wir in Zeile drei den Quellcode ab und ersetzen \textit{grep -e '\^{}d'} durch \textit{ grep -e '\^{}-'}. Nach speichern sollte beim Ausführen der Datei nur Dateien angezeigt werden. Die Modifikation der Datei kann Git auflösen mittels \textit{\nameref{git-commands.advanced.diff}}.
 
+\begin{INFO}
+  Es bietet sich \textit{--word-diff} als Flag für \textit{\nameref{git-commands.advanced.diff}} an um nicht Zeilen sondern Wörter im diff zu vergleichen.
+\end{INFO}
 
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
+$ git diff --word-diff
+diff --git a/test.sh b/test.sh
+index 0921127..706f4da 100755
+--- a/test.sh
++++ b/test.sh
+@@ -1,3 +1,3 @@
+#!/usr/bin/env bash
+PWD="$(pwd)"
+-ls -la ${PWD} | grep -e '^d' 2>/dev/null
++ls -la ${PWD} | grep -e '^-' 2>/dev/null
+\end{minted}
+
+Wie zu erkennen, wird ein \textit{+} vor jene Zeile gestellt, in der Zeichen hinzugefügt wurden und ein \textit{-} vor jener, in der Zeichen entfernt wurden.
+
+Dem Befehl \textit{\nameref{git-commands.advanced.diff}} kann optional noch den Namen einer Datei übergeben werden um speziell über die genannte Datei ein \textit{diff} zu bilden.
+
+Möchte man eine Übersicht über alle Dateien, bei denen zum letzten \textit{commit} eine Veränderung oder Modifikation vorliegt, kann dies mit \textit{\nameref{git-commands.advanced.status}} vorgenommen werden.
+
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
+  $ git status
+  Auf Branch master
+  Ihr Branch ist 1 Commit vor 'origin/master'.
+  (benutzen Sie "git push", um lokale Commits zu publizieren)
+  
+  Änderungen, die nicht zum Commit vorgemerkt sind:
+  (benutzen Sie "git add <Datei>...", um die Änderungen 
+   zum Commit vorzumerken)
+  (benutzen Sie "git checkout -- <Datei>...", um die 
+   Änderungen im Arbeitsverzeichnis zu verwerfen)
+  
+  geändert:       test.sh
+  
+  keine Änderungen zum Commit vorgemerkt 
+  (benutzen Sie "git add" und/oder "git commit -a")
+\end{minted}
+
+Aus der Ausgabe sind nicht nur Informationen zu entnehmen, welche Modifikationen vorliegen, sondern auch, um wie viele \textit{commits} der lokale Branch \textit{master} vor dem Branch \text{master} aus dem Remote-Repository \textit{origin} befindet.
+
+Um die Datei dem Index hinzuzufügen, wird der Befehl \textit{\nameref{git-commands.advanced.add}} benutzt. Man kann auch alle Dateien im gleichen Verzeichnis dem Index hinzufügen, die Modifikationen enthalten.
+
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
+$ git add test.sh # Einzelne Datei
+$ git add .       # Alle Dateien im Verzeichnis 
+\end{minted}
+
+Nun sollte auch ein wiederholter Aufruf von \textit{\nameref{git-commands.advanced.add}} Informationen ausgeben, welche Dateien dem Index hinzugefügt wurden.
+
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
+$ git status
+Auf Branch master
+Ihr Branch ist 1 Commit vor 'origin/master'.
+(benutzen Sie "git push", um lokale Commits zu publizieren)
+
+zum Commit vorgemerkte Änderungen:
+(benutzen Sie "git reset HEAD <Datei>..." 
+ zum Entfernen aus der Staging-Area)
+
+geändert:       test.sh
+\end{minted}
+
+Um nun Dateien, die sich im Index befinden, dauerhaft als Commit zu speichern kommt der Befehl \textit{\nameref{git-commands.advanced.commit}} zum Einsatz. Ihm wird eine Nachricht mit übergeben.
+
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
+$ git commit -m "fix: test.sh"
+[master 00bc84a] fix: test.sh
+1 file changed, 1 insertion(+), 1 deletion(-)
+\end{minted}
+
+Möchte man sich nun die Historie ausgeben, wird der Befehl  \textit{\nameref{git-commands.advanced.log}} eingesetzt. Diesem werden mehrere Flags mit übergeben um die Historie auf \textit{stdout} auszugeben. Alternativ kann auch ein Alias erzeugt werden.
+
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
+$ git log --abbrev-commit --decorate \
+          --graph --all --oneline
+$ # Ausgabe der Historie gekürzt
+$ # Git Alias 'loo' erzeugen
+$ git config --global alias.loo \ 
+  'log --abbrev-commit --decorate --graph --all --oneline'
+$ # Git Alias 'loo' verwenden
+$ git loo
+* 00bc84a (HEAD -> master) fix: test.sh
+* 50700bf fix: chapter 4
+* 8a4005a (origin/master) fix: test.sh
+* dac0579 test.sh
+* 5d9958d fix: test.sh
+\end{minted}
