@@ -3,9 +3,12 @@
 \subsection{Erste Schritte}
 Nachdem wie in Abschnitt \ref{workflow.einrichtung} beschrieben die generelle Umgebung eingerichtet wurde, befindet sich im gleichen Verzeichnis die Datei \textit{test.sh}.
 
-\begin{minted}[framesep=2mm, fontsize=\small]{bash}
+\begin{minted}[framesep=2mm, linenos, fontsize=\small]{bash}
 #!/usr/bin/env bash
 PWD="$(pwd)"
-ls -la ${BASE} | grep -e '^d' 2>/dev/null
+ls -la ${PWD} | grep -e '^d' 2>/dev/null
 \end{minted}
+
+Nun ändern wir den Quellcode ab in Zeile drei und ersetzen \textit{grep -e '\^{}d'} durch \textit{ grep -e '\^{}-'}. Nach speichern sollte beim Ausführen der Datei nur Dateien angezeigt werden. Die Modifikation der Datei kann Git auflösen mittels \textit{\nameref{git-commands.advanced.diff}}
+
 
