@@ -1,9 +1,9 @@
 \section{Arbeiten mit Git}
-\label{work-with-git}
+\label{sec:work-with-git}
 
 \subsection{Erste Schritte}
-\label{work-with-git.first-steps}
-Nachdem wie in Abschnitt \ref{workflow.einrichtung} beschrieben die generelle Umgebung eingerichtet wurde, befindet sich im gleichen Verzeichnis die Datei \textit{test.sh}.
+\label{sec:work-with-git.first-steps}
+Nachdem wie in Abschnitt \ref{sec:workflow.einrichtung} beschrieben die generelle Umgebung eingerichtet wurde, befindet sich im gleichen Verzeichnis die Datei \textit{test.sh}.
 
 \begin{minted}[framesep=2mm, linenos, fontsize=\small]{bash}
 #!/usr/bin/env bash
@@ -12,11 +12,11 @@ ls -la ${PWD} | grep -e '^d' 2>/dev/null
 \end{minted}
 
 \subsection{Modifikationen sichtbar machen}
-\label{work-with-git.modifikation}
-In der Datei \textit{test.sh} wird nun der Quellcode in Zeile drei geändert und ersetzt durch \textit{ grep -e '\^{}-'}. Nach speichern sollte beim Ausführen der Datei nur Dateien angezeigt werden. Die Modifikation der Datei kann Git auflösen mittels \textit{\nameref{git-commands.advanced.diff}}.
+\label{sec:work-with-git.modifikation}
+In der Datei \textit{test.sh} wird nun der Quellcode in Zeile drei geändert und ersetzt durch \textit{ grep -e '\^{}-'}. Nach speichern sollte beim Ausführen der Datei nur Dateien angezeigt werden. Die Modifikation der Datei kann Git auflösen mittels \textit{\nameref{sec:git-commands.advanced.diff}}.
 
 \begin{INFO}
-  Es bietet sich \textit{--word-diff} als Flag für \textit{\nameref{git-commands.advanced.diff}} an um nicht Zeilen sondern Wörter im diff zu vergleichen.
+  Es bietet sich \textit{--word-diff} als Flag für \textit{\nameref{sec:git-commands.advanced.diff}} an um nicht Zeilen sondern Wörter im diff zu vergleichen.
 \end{INFO}
 
 \begin{minted}[framesep=2mm, fontsize=\small]{bash}
@@ -34,11 +34,11 @@ PWD="$(pwd)"
 
 Wie zu erkennen, wird ein \textit{+} vor jene Zeile gestellt, in der Zeichen hinzugefügt wurden und ein \textit{-} vor jener, in der Zeichen entfernt wurden.
 
-Dem Befehl \textit{\nameref{git-commands.advanced.diff}} kann optional noch den Namen einer Datei übergeben werden um speziell über die genannte Datei ein \textit{diff} zu bilden.
+Dem Befehl \textit{\nameref{sec;git-commands.advanced.diff}} kann optional noch den Namen einer Datei übergeben werden um speziell über die genannte Datei ein \textit{diff} zu bilden.
 
 \subsection{Status des Workingtrees}
-\label{work-with-git.workingtree-status}
-Möchte man eine Übersicht über alle Dateien, bei denen zum letzten \textit{commit} eine Veränderung oder Modifikation vorliegt, kann dies mit \textit{\nameref{git-commands.advanced.status}} vorgenommen werden.
+\label{sec:work-with-git.workingtree-status}
+Möchte man eine Übersicht über alle Dateien, bei denen zum letzten \textit{commit} eine Veränderung oder Modifikation vorliegt, kann dies mit \textit{\nameref{sec;git-commands.advanced.status}} vorgenommen werden.
 
 \begin{minted}[framesep=2mm, fontsize=\small]{bash}
   $ git status
@@ -61,15 +61,15 @@ Möchte man eine Übersicht über alle Dateien, bei denen zum letzten \textit{co
 Aus der Ausgabe sind nicht nur Informationen zu entnehmen, welche Modifikationen vorliegen, sondern auch, um wie viele \textit{commits} der lokale Branch \textit{master} vor dem Branch \text{master} aus dem Remote-Repository \textit{origin} befindet.
 
 \subsection{Vom Workingtree zum Index}
-\label{work-with-git.workingtree-to-index}
-Um die Datei dem Index hinzuzufügen, wird der Befehl \textit{\nameref{git-commands.advanced.add}} benutzt. Man kann auch alle Dateien im gleichen Verzeichnis dem Index hinzufügen, die Modifikationen enthalten.
+\label{sec:work-with-git.workingtree-to-index}
+Um die Datei dem Index hinzuzufügen, wird der Befehl \textit{\nameref{sec;git-commands.advanced.add}} benutzt. Man kann auch alle Dateien im gleichen Verzeichnis dem Index hinzufügen, die Modifikationen enthalten.
 
 \begin{minted}[framesep=2mm, fontsize=\small]{bash}
 $ git add test.sh # Einzelne Datei
 $ git add .       # Alle Dateien im Verzeichnis 
 \end{minted}
 
-Nun sollte auch ein wiederholter Aufruf von \textit{\nameref{git-commands.advanced.add}} Informationen ausgeben, welche Dateien dem Index hinzugefügt wurden.
+Nun sollte auch ein wiederholter Aufruf von \textit{\nameref{sec;git-commands.advanced.add}} Informationen ausgeben, welche Dateien dem Index hinzugefügt wurden.
 
 \begin{minted}[framesep=2mm, fontsize=\small]{bash}
 $ git status
@@ -86,8 +86,8 @@ geändert:       test.sh
 
 
 \subsection{Vom Index zum Commit}
-\label{work-with-git.index-to-commit}
-Um nun Dateien, die sich im Index befinden, dauerhaft als Commit zu speichern kommt der Befehl \textit{\nameref{git-commands.advanced.commit}} zum Einsatz. Ihm wird eine Nachricht mit übergeben.
+\label{sec:work-with-git.index-to-commit}
+Um nun Dateien, die sich im Index befinden, dauerhaft als Commit zu speichern kommt der Befehl \textit{\nameref{sec;git-commands.advanced.commit}} zum Einsatz. Ihm wird eine Nachricht mit übergeben.
 
 \begin{minted}[framesep=2mm, fontsize=\small]{bash}
 $ git commit -m "fix: test.sh"
@@ -96,7 +96,8 @@ $ git commit -m "fix: test.sh"
 \end{minted}
 
 \subsection{Die Commit-Hierarchie}
-Möchte man sich nun die Historie ausgeben, wird der Befehl  \textit{\nameref{git-commands.advanced.log}} eingesetzt. Diesem werden mehrere Flags mit übergeben um die Historie auf \textit{stdout} auszugeben. Alternativ kann auch ein Alias erzeugt werden.
+\label{sec:work-with-git.log-hierarchie}
+Möchte man sich nun die Historie ausgeben, wird der Befehl  \textit{\nameref{sec:git-commands.advanced.log}} eingesetzt. Diesem werden mehrere Flags mit übergeben um die Historie auf \textit{stdout} auszugeben. Alternativ kann auch ein Alias erzeugt werden.
 
 \begin{minted}[framesep=2mm, fontsize=\small]{bash}
 $ git log --abbrev-commit --decorate \
@@ -114,11 +115,11 @@ $ git loo
 * 5d9958d fix: test.sh
 \end{minted}
 
-Wie in Abschnitt \ref{work-with-git.workingtree-status} bereits angedeutet, befindet sich nun der lokale Branch \textit{master} auf dem Commit mit der ID \textit{00bc84a} und der Branch \textit{master} des Remote-Repositories \textit{origin} auf der ID \textit{8a4005a}, wobei sich nun der lokale Branch \textit{master} zwei Commits vor dem Branch \textit{master} des Remote-Repositories befindet.
+Wie in Abschnitt \ref{sec;work-with-git.workingtree-status} bereits angedeutet, befindet sich nun der lokale Branch \textit{master} auf dem Commit mit der ID \textit{00bc84a} und der Branch \textit{master} des Remote-Repositories \textit{origin} auf der ID \textit{8a4005a}, wobei sich nun der lokale Branch \textit{master} zwei Commits vor dem Branch \textit{master} des Remote-Repositories befindet.
 
 \subsection{Aktualisierung des Remote-Repositories}
-\label{work-with-git.update-online-repo}
-Um nun seine Änderungen auf sein Online-Repository zu aktualisieren, kann der Befehl \textit{\nameref{git-commands.advanced.push}} verwendet werden. 
+\label{sec:work-with-git.update-online-repo}
+Um nun seine Änderungen auf sein Online-Repository zu aktualisieren, kann der Befehl \textit{\nameref{sec:git-commands.advanced.push}} verwendet werden. 
 
 \begin{minted}[framesep=2mm, fontsize=\small]{bash}
 $ git push
@@ -130,3 +131,21 @@ Total 8 (delta 6), reused 0 (delta 0)
 To git@github.com:hugo-mckinnock/sdsm_ss17_git.git
 079ab54..7f809c3  master -> master
 \end{minted}
+
+\begin{INFO}
+  Sollte es hier zu Problemen kommen, sollten die Login-Daten oder der SSH-Schlüssel der Plattform überprüft werden, auf die die Änderungen bzw. Modifikationen herauf geladen werden sollen. 
+\end{INFO}
+
+
+\subsection{Änderungen einreichen}
+\label{sec:work-with-git.send-merge-request}
+Um Änderungen an das Repository einzureichen, von dem man in Abschnitt \ref{sec:workflow.einrichtung} alles geklont hat, muss ein \textit{Merge Request} oder auch schon mal \textit{Pull Request} auf jener Plattform erstellt werden. Exemplarisch wird dies nun auf der Plattform \href{https://github.com}{GitHub} vorgenommen. Dabei ist es wichtig zuerst sein eigenes Online-Repository mit einem Browser zu öffnen.
+
+\begin{landscape}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{images//pull-request.png}
+    \label{img:github-pull-request}
+  \end{figure}
+\end{landscape}
+

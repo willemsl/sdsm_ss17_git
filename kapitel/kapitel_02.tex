@@ -1,8 +1,8 @@
-\label{workflow}
 \section{Workflow}
+\label{sec:workflow}
 
-\label{workflow.erlaeuterung}
 \subsection{Erläuterung}
+\label{sec:workflow.erlaeuterung}
 Wie bereits in Kapitel \ref*{sec:einfuehrung.grundbegriffe} erwähnt, ist ein dezentrales Versionskontrollsystem. Dadurch ist jeder Nutzer in der Lage ohne Abhängigkeit zu einem Server seinen Quellcode zu versionieren.
 
 Jeder Nutzer kann sein eigenes Projekt durch \textit{git init} zu einem Git Repository initialisieren oder ein bestehendes Repository aus einem Online-Verzeichnis klonen. Beim klonen des Repositories wird der komplette Hierarchiebaum bzw. die Chronik mit jedem Commit und Branch geklont. Beim initialisieren eines neuen Repositories ist der Hierarchiebaum leer und unbeschrieben. Die Initialisierung eines neues Repositories wird bevorzugt beim neuen Projekten.
@@ -16,12 +16,13 @@ Bei einem Merge-Request fragt man an, ob eine bestimmte Sammlung von Commits, di
 \begin{figure}[h]
   \centering
   \label{img:workflow}
-  \includegraphics[width=1\textwidth]{img//workflow.png}
+  \includegraphics[width=1\textwidth]{images//workflow.png}
   \caption{Workflow}
 \end{figure}  
 
-\label{workflow.einrichtung}
+
 \subsection{Einrichtung}
+\label{sec:workflow.einrichtung}
 Im Heimatverzeichnis wird wie von vielen IDE's bevorzugt, das Verzeichnis \textit{workspace} erstellt. Dort wird von dem Online-Repository \href{https://github.com}{GitHub} dieses \LaTeX{} Projekt, das dieses Dokument enthält, geklont. Nach dem klonen befindet sich im Verzeichnis \textit{workspace} der Unterordner \textit{sdsm\_ss17\_git}, in den mittels \textit{cd} nachträglich navigiert wird.
 
 \begin{minted}[framesep=2mm, fontsize=\small]{bash}

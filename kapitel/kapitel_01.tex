@@ -1,9 +1,9 @@
-\label{sec:einfuehrung}
 \section{Einführung}
+\label{sec:einfuehrung}
 Dieses Kapitel bietet eine Einführung in die Grundbegriffe von Git und deren generelle Grundkonfiguration.
 
-\label{sec:einfuehrung.grundbegriffe}
 \subsection{Grundbegriffe}
+\label{sec:einfuehrung.grundbegriffe}
 Um dem Umgang mit Git zu erläutern ist es notwendig, einige Fachbegriffe zu verstehen. 
 
 \myparagraph{Versionskontrollsystem} 
@@ -26,9 +26,8 @@ HEAD bildet eine Referenz ab, in welchem Zustand der Entwickler sein Working Tre
 \myparagraph{Branch}
 Jede Software kann in ihrem Verlauf mehrere Entwicklungsverzweigungen haben um beispielsweise in jeder Verzweigung einzelne Teilaufgaben wie Patches oder neuen Features von Software zu entwickeln. Diese Verzweigungen werden Branches genannt. Jede Verzweigung kann später durch einen Merge oder Rebase wieder zurück geführt werden.
 
-
-\label{sec:einfuehrung.git}
 \subsection{Grundeinrichtung}
+\label{sec:einfuehrung.git}
 Wie bereits in in Kapitel \ref{sec:einfuehrung.grundbegriffe} erklärt, speichert Git bei jedem Commit den Benutzernamen und E-Mail ab um nachzuvollziehen von wem die Änderung des Quellcodes stammt. Bevor nun dieses Dokument, das als \LaTeX{} Projekt angelegt wurde, durch Git verwaltet wird, ist es Sinnvoll den Benutzernamen und die E-Mail Adresse anzupassen \footcite{git-1.6-your-identity}.
 
 \begin{minted}[framesep=2mm, fontsize=\small]{bash}
@@ -36,8 +35,8 @@ $ git config --global user.name "Hugo McKinnock"
 $ git config --global user.email "hugo.mckinnock@example.com"
 \end{minted}
 
-
 \subsection{Signieren von Commits}
+\label{sec:einfuehrung.sign-commits}
 Da jede Person in der Lage ist den Quellcode boshaft zu ändern unter beliebigen Namen, bietet Git die Möglichkeit an jeden Commit mit einem GnuPG Schlüssel zu signieren.
 
 \begin{INFO}
