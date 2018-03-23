@@ -115,3 +115,18 @@ $ git loo
 \end{minted}
 
 Wie in Abschnitt \ref{work-with-git.workingtree-status} bereits angedeutet, befindet sich nun der lokale Branch \textit{master} auf dem Commit mit der ID \textit{00bc84a} und der Branch \textit{master} des Remote-Repositories \textit{origin} auf der ID \textit{8a4005a}, wobei sich nun der lokale Branch \textit{master} zwei Commits vor dem Branch \textit{master} des Remote-Repositories befindet.
+
+\subsection{Aktualisierung des Remote-Repositories}
+\label{work-with-git.update-online-repo}
+Um nun seine Änderungen auf sein Online-Repository zu aktualisieren, kann der Befehl \textit{\nameref{git-commands.advanced.push}} verwendet werden. 
+
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
+$ git push
+Zähle Objekte: 8, Fertig.
+Delta compression using up to 4 threads.
+Komprimiere Objekte: 100% (8/8), Fertig.
+Schreibe Objekte: 100% (8/8), 1.43 KiB | 1.43 MiB/s, Fertig.
+Total 8 (delta 6), reused 0 (delta 0)
+To git.cryptic.systems:fh-trier/sdsm_ss17_git.git
+079ab54..7f809c3  master -> master
+\end{minted}
