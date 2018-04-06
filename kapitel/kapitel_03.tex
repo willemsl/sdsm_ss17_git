@@ -1,0 +1,88 @@
+\section{Git-Befehle}
+\label{sec:git-commands}
+
+Um am Workflow, wie er in Abbildung \ref{img:workflow} abgebildet ist teil zu nehmen, sind ein paar grundlegende Git-Befehle notwendig. Ein paar Befehle wurden bereits in Kapitel \ref{sec:einfuehrung.git} und \ref{sec:workflow.einrichtung} vorgestellt.
+
+\subsection{Weitere Git-Befehle}
+\label{sec:git-commands.advanced}
+
+\myparagraph{git add}
+\label{sec:git-commands.advanced.add}
+Der Befehl \textit{git add} fügt Veränderungen an einer Datei aus dem Working Tree dem Index hinzu. Wird eine Datei dem Index hinzugefügt, wird sie in dem Zustand dem Index hinzugefügt, wie sie sich zum Zeitpunkt beim ausführen des Befehls befindet. Dateien die sich im Index befinden sind für einen Commit vorgemerkt. 
+
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
+$ git add .                 # Alle Dateien die neu erstellt wurden 
+                            # oder veränderungen haben werdem dem 
+                            # Index hinzugefügt
+                            
+$ git add img/workflow.png  # Fügt die Datei workflow.png aus dem 
+                            # Verzeichnis img dem Index hinzu
+\end{minted}
+
+\myparagraph{git commit}
+\label{sec:git-commands.advanced.commit}
+Der Befehl \textit{git commit} speichert unter Angabe einer Nachricht den Zustand aller Dateien aus dem Index ab. Die Angabe einer Nachricht ist Pflicht. Zusätzlich werden bei jedem Commit Metadaten mit abgespeichert wie bspw. der Name des Authors und dessen E-Mail Adresse. Optional kann dem Commit auch eine digitale Signatur hinzugefügt werden.
+
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
+$ git commit -m "Message"   # Erzeug ein Commit mit einer Nachricht
+\end{minted}
+
+\myparagraph{git fetch}
+\label{sec:git-commands.advanced.fetch}
+Mit \textit{git fetch $ < $label$ > $} werden alle neuen Commits von einem Online-Repository heruntergeladen, die sich noch nicht lokal auf dem System befinden. Wird statt einem Label direkt die Adresse angegeben, speichert Git alle Commits unter der Referenz \textit{FETCH\_HEAD}.
+
+\begin{minted}[framesep=2mm, fontsize=\small]{bash}
+$ git fetch origin
+$ git fetch git@github.com:fh-trier/sdsm_ss17_git.git
+\end{minted}
+
+\begin{INFO}
+  Wenn der Befehl \textit{git fetch} ausgeführt wird, heißt dies noch nicht, dass das lokale Repository aktualisiert wird. Dies muss mittels \textit{\nameref{sec:git-commands.advanced.merge}} oder \textit{\nameref{sec:git-commands.advanced.rebase}} manuell ausgeführt werden.
+\end{INFO}
+
+\myparagraph{git push}
+\label{sec:git-commands.advanced.push}
+Kopiert alle neuen Commits des aktuellen lokalen Branches auf einen Branch des Online-Repositories unter Angabe des Labels.
+
+\myparagraph{git merge}
+\label{sec:git-commands.advanced.merge}
+Fügt zwei Branches wieder zusammen. Beim Zusammenfügen können Konflikte entstehen, die der Entwickler manuell auflösen muss. Dazu bietet sich das Programm \textit{meld} an.
+
+\myparagraph{git rebase}
+\label{sec:git-commands.advanced.rebase}
+Schreibt die Historie bzw. Chronik eines Branches neu, in dem die neuen Commits auf \textit{HEAD} aufgesetzt werden. Bei einem \textit{rebase} kann es zu Konflikten kommen, die der Entwickler manuell auflösen muss. Dazu bietet sich das Programm \textit{meld} an. 
+
+Der Vorteil gegenüber einem \textit{\nameref{sec:git-commands.advanced.merge}} ist, dass wenn der Entwickler die Historie auflösen möchte, nicht alle Verzweigungen bzw Branches mit auflösen muss. Ein Rebase hält die Historie möglichst sauber.
+
+\myparagraph{git reset}
+\label{sec:git-commands.advanced.reset}
+Ermöglicht den Zustand es Working Trees auf eine Referenz (Commit-ID, HEAD, Branch oder Tag) zurück zusetzen.
+
+\myparagraph{git revert}
+\label{sec:git-commands.advanced.revert}
+Ermöglicht einen Commit zu widerrufen, da es nicht möglich ist mit Git einen Commit zu löschen. Dazu wird die Veränderung des Commits zuvor durch einen neuen Commit negiert.
+
+\myparagraph{git log}
+\label{sec:git-commands.advanced.log}
+Gibt die Historie aus. Zusätzlich werden die Metadaten des Commits auf Stdout ausgegeben. 
+
+\begin{INFO}
+  Möchte man die Historie als Graphen ausgeben bietet sich folgender Git-Befehl an: \textit{git log --abbrev-commit --decorate --graph --all --oneline}
+\end{INFO}
+
+\myparagraph{git status}
+\label{sec:git-commands.advanced.status}
+Gibt auf Stadout Informationen aus, welche Datei Modifiziert wurde und welche sich im Index befinden.
+
+\myparagraph{git diff}
+\label{sec:git-commands.advanced.diff}
+Ermöglicht den Vergleich zwischen zwei Referenzen. Dazu wird ein diff auf Stdout ausgegeben.
+
+\begin{INFO}
+  Ist ein grafisches Tool wie \textit{meld} installiert, kann auch der Befehl \textit{git difftool} ausgeführt werden. Dies öffnet das Programm \textit{meld} um beide Referenzen in einer grafischen Oberfläche zu vergleichen.
+\end{INFO}
+
+
+
+
+

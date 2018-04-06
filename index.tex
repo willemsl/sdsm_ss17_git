@@ -94,7 +94,6 @@
 \usepackage{tabularx}
 
 
-
 % Paket: biblatex
 \usepackage[
   style=authoryear-icomp,  	% Zitierstil
@@ -144,6 +143,8 @@ frametitlefont=\sffamily\bfseries\color{white},
 frametitlebackgroundcolor=orange,
 ]{INFO}{Information}[subsection]
 
+\usepackage{lscape}
+
 % Start des Dokuments
 \begin{document}
 
@@ -161,7 +162,7 @@ frametitlebackgroundcolor=orange,
   \pagestyle{empty}
 
   % Importiere weitere .tex Dokumente
-  %\include{vorwort//vorwort}
+  \include{vorwort//vorwort}
   \include{agenda//agenda}
 
   % Pagestyle
@@ -188,20 +189,20 @@ frametitlebackgroundcolor=orange,
 
   % Importiere weitere .tex Dokumente
   \include{kapitel//kapitel_01}
+  \include{kapitel//kapitel_02}
+  \include{kapitel//kapitel_03}
+  \include{kapitel//kapitel_04}
 
   % Glossar
-  \printglossaries
-  \newpage
+  %\printglossaries
+  %\newpage
 
   % Abbildungsverzeichnis
-  \listoffigures
-  \newpage
+  %\listoffigures
+  %\newpage
 
   % Literaturverzeichnis
   \printbibliography
-
-  % Erklärung
-  %\include{erklaerung//erklaerung}
 
 \end{document}
 
